@@ -10,10 +10,7 @@ class Song
     def initialize(name, artist, genre)
         @name = name
         @artist = artist
-        #binding.pry
         @genre = genre
-        genre.songs << self
-        genre.artists << artist
         @@all << self
     end
 

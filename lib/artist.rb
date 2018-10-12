@@ -2,29 +2,25 @@ require 'pry'
 class Artist
 
     attr_reader :name
-    attr_accessor :songs, :genres
 
     @@all = []
     
 
     def initialize(name)
         @name = name
-        @songs = []
-        @genres = []
         @@all << self
     end
 
-    def songs=(song)
-        @songs << song
+    def songs
+        Song.all.select{|s| s.artist == self}
     end
 
-    def genres=(genre)
-        @genres << genre
+    def genres
+        songs.map{|a| a.genre}
     end
 
     def new_song(name, genre)
-        self.genres = genre
-        self.songs = Song.new(name, self,  genre)
+        Song.new(name, self,  genre)
     end
 
     def self.all
